@@ -65,4 +65,15 @@ public class Restaurant {
         return name;
     }
 
+    public int getTotalCostOfSelectedItems(List<String> selectedItems) throws itemNotFoundException{
+        int totalCost = 0;
+        for(String selectedItem : selectedItems) {
+            Item item = findItemByName(selectedItem);
+            if(item == null) {
+                throw new itemNotFoundException(item.getName());
+            }
+            totalCost += item.getPrice();
+        }
+        return totalCost;
+    }
 }

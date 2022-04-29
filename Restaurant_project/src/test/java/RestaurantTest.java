@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.awt.*;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -76,6 +77,17 @@ class RestaurantTest {
         selectedItems.add("Butter Chicken");
         assertThrows(itemNotFoundException.class,
                 ()->restaurant.getTotalCostOfSelectedItems(selectedItems));
+    }
+    @Test
+    public void get_total_cost_of_selected_items() throws itemNotFoundException{
+        List<Item> selectedItems = restaurant.getMenu();
+        List<String> selectedItemsNames = new ArrayList<>();
+        for(Item item : selectedItems) {
+            selectedItemsNames.add(item.getName());
+        }
+        int totalCost = restaurant.getTotalCostOfSelectedItems(selectedItemsNames);
+
+        assertEquals(388, totalCost);
     }
     //<<<<<<<<<<<<<<<<<<<<<<<MENU>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 }
